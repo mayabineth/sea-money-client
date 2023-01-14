@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { type } from "../utils/interf";
-import { movements, messages, connections } from "../utils/data";
+import { type } from "../utils/interfaces";
+import { movements, messages, assets, connections } from "../utils/data";
 const initialState: type = {
   successRegister: false,
   isLoading: false,
@@ -12,14 +12,8 @@ const initialState: type = {
 
   userName: "name",
 
-  assetId: "",
-  assetSum: "",
-  assetDetail: "",
-  assetStartDate: "",
-  assetEndDate: "",
-
   movements: movements,
-  assets: [],
+  assets: assets,
   connections: connections,
   messages: messages,
 

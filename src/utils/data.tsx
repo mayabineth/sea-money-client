@@ -1,50 +1,80 @@
-export const movements = [
+import { assetType, moveType } from "./interfaces";
+export const movements: moveType[] = [
   {
-    moveDate: "date1",
-    moveDetail: "detail1",
-    moveSum: "sum1",
-    moveCategory: "category1",
-    moveType: "type1",
+    id: "id1",
+    date: "date1",
+    name: "name1",
+    sum: "sum1",
+    category: "category1",
+    type: "type1",
   },
   {
-    moveDate: "date2",
-    moveDetail: "detail2",
-    moveSum: "sum2",
-    moveCategory: "category2",
-    moveType: "type2",
+    id: "id2",
+    date: "date2",
+    name: "name2",
+    sum: "sum2",
+    category: "category2",
+    type: "type2",
   },
   {
-    moveDate: "date3",
-    moveDetail: "detail3",
-    moveSum: "sum3",
-    moveCategory: "category3",
-    moveType: "type3",
+    id: "id3",
+    date: "date3",
+    name: "name3",
+    sum: "sum3",
+    category: "category3",
+    type: "type3",
   },
   {
-    moveDate: "date4",
-    moveDetail: "detail4",
-    moveSum: "sum4",
-    moveCategory: "category4",
-    moveType: "type4",
+    id: "id4",
+    date: "date4",
+    name: "name4",
+    sum: "sum4",
+    category: "category4",
+    type: "type4",
   },
 ];
-
+export const assets: assetType[] = [
+  {
+    id: "id1",
+    name: "name1",
+    sum: "sum1",
+    category: "category1",
+    currency: "currency1",
+    estimatedAnnualReturn: "estimatedAnnualReturn1",
+  },
+  {
+    id: "id2",
+    name: "name2",
+    sum: "sum2",
+    category: "category1",
+    currency: "currency2",
+    estimatedAnnualReturn: "estimatedAnnualReturn2",
+  },
+  {
+    id: "id3",
+    name: "name3",
+    sum: "sum3",
+    category: "category3",
+    currency: "currency3",
+    estimatedAnnualReturn: "estimatedAnnualReturn3",
+  },
+  {
+    id: "id4",
+    name: "name4",
+    sum: "sum4",
+    category: "category4",
+    currency: "currency4",
+    estimatedAnnualReturn: "estimatedAnnualReturn4",
+  },
+];
 export const messages = [
   {
-    msgTitle: "msg1",
-    msgContent: "Lorem ipsum dolor sit amet1",
+    id: "1",
+    title: "msg1",
+    content: "Lorem ipsum dolor sit amet1",
   },
-  {
-    msgTitle: "msg2",
-    msgContent: "Lorem ipsum dolor sit amet2",
-  },
-  {
-    msgTitle: "msg3",
-    msgContent: "Lorem ipsum dolor sit amet3",
-  },
-  {
-    msgTitle: "msg4",
-    msgContent: "Lorem ipsum dolor sit amet4",
-  },
+  { id: "2", title: "msg2", content: "Lorem ipsum dolor sit amet2" },
+  { id: "3", title: "msg3", content: "Lorem ipsum dolor sit amet3" },
+  { id: "4", title: "msg4", content: "Lorem ipsum dolor sit amet4" },
 ];
 export const connections = ["Maya", "Daniel", "Yuval", "Noa", "Tamar"];

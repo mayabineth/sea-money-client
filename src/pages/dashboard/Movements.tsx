@@ -1,6 +1,6 @@
 import Wrapper from "../../assets/wrappers/DashboardFormPage";
 import { useSelector } from "react-redux";
-import { moveType } from "../../utils/interf";
+import { moveType } from "../../utils/interfaces";
 
 import * as React from "react";
 import { alpha } from "@mui/material/styles";
@@ -67,31 +67,31 @@ interface HeadCell {
 
 const headCells: readonly HeadCell[] = [
   {
-    id: "moveDate",
+    id: "date",
     numeric: false,
     disablePadding: true,
     label: "Move Date",
   },
   {
-    id: "moveDetail",
+    id: "name",
     numeric: false,
     disablePadding: false,
-    label: "Move Details",
+    label: "Move Name",
   },
   {
-    id: "moveSum",
+    id: "sum",
     numeric: true,
     disablePadding: false,
     label: "Move Sum",
   },
   {
-    id: "moveCategory",
+    id: "category",
     numeric: true,
     disablePadding: false,
     label: "Move Category",
   },
   {
-    id: "moveType",
+    id: "type",
     numeric: false,
     disablePadding: false,
     label: "Move Type",
@@ -141,7 +141,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.id === "moveDate" ? "left" : "right"}
+            align={headCell.id === "date" ? "left" : "right"}
             // align={"right"}
             padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
@@ -207,7 +207,7 @@ export function Movements() {
   const { movements } = useSelector((store: any) => store.cart);
 
   const [order, setOrder] = React.useState<Order>("asc");
-  const [orderBy, setOrderBy] = React.useState<keyof moveType>("moveDate");
+  const [orderBy, setOrderBy] = React.useState<keyof moveType>("date");
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -223,22 +223,19 @@ export function Movements() {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelected = movements.map((n: moveType) => n.moveDetail);
+      const newSelected = movements.map((n: moveType) => n.id);
       setSelected(newSelected);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (
-    event: React.MouseEvent<unknown>,
-    moveDetail: string
-  ) => {
-    const selectedIndex = selected.indexOf(moveDetail);
+  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
+    const selectedIndex = selected.indexOf(name);
     let newSelected: readonly string[] = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, moveDetail);
+      newSelected = newSelected.concat(selected, name);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -264,8 +261,7 @@ export function Movements() {
     setPage(0);
   };
 
-  const isSelected = (moveDetail: string) =>
-    selected.indexOf(moveDetail) !== -1;
+  const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -295,19 +291,17 @@ export function Movements() {
                 {stableSort(movements, getComparator(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((movement, index) => {
-                    const isItemSelected = isSelected(movement.moveDetail);
+                    const isItemSelected = isSelected(movement.id);
                     const labelId = `enhanced-table-checkbox-${index}`;
 
                     return (
                       <TableRow
                         hover
-                        onClick={(event) =>
-                          handleClick(event, movement.moveDetail)
-                        }
+                        onClick={(event) => handleClick(event, movement.id)}
                         role="checkbox"
                         aria-checked={isItemSelected}
                         tabIndex={-1}
-                        key={movement.moveDetail}
+                        key={movement.id}
                         selected={isItemSelected}
                       >
                         <TableCell padding="checkbox">
@@ -325,16 +319,12 @@ export function Movements() {
                           scope="row"
                           padding="none"
                         >
-                          {movement.moveDate}
+                          {movement.date}
                         </TableCell>
-                        <TableCell align="right">
-                          {movement.moveDetail}
-                        </TableCell>
-                        <TableCell align="right">{movement.moveSum}</TableCell>{" "}
-                        <TableCell align="right">
-                          {movement.moveCategory}
-                        </TableCell>
-                        <TableCell align="right">{movement.moveType}</TableCell>
+                        <TableCell align="right">{movement.name}</TableCell>
+                        <TableCell align="right">{movement.sum}</TableCell>{" "}
+                        <TableCell align="right">{movement.category}</TableCell>
+                        <TableCell align="right">{movement.type}</TableCell>
                       </TableRow>
                     );
                   })}
