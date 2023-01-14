@@ -10,9 +10,9 @@ const Wrapper = styled.section`
     margin-top: 0;
   }
   .msgs {
-    display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   .msg {
@@ -59,9 +59,8 @@ const Wrapper = styled.section`
   }
   @media (min-width: 992px) {
     .msgs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      display: flex;
+      flex-direction: column;
     }
   }
 `;
