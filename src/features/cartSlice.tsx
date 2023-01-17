@@ -25,6 +25,7 @@ const initialState: type = {
   isOpenRemove: false,
   isOpenEdit: false,
   isOpenAdd: false,
+  clickedItemRemove: "none",
 };
 
 const cartSlice = createSlice({
@@ -104,7 +105,7 @@ const cartSlice = createSlice({
     },
     openModalRemove: (state, { payload }) => {
       state.isOpenRemove = true;
-      // state.clickedItemRemove = payload;
+      state.clickedItemRemove = payload;
     },
     closeModalRemove: (state) => {
       state.isOpenRemove = false;
@@ -115,13 +116,6 @@ const cartSlice = createSlice({
     closeModalAdd: (state) => {
       state.isOpenAdd = false;
     },
-    // handleChange: (state, { payload }) => {
-    //   const val = payload.name;
-    //   state.val = payload.value;
-    // },
-    // handleChange: (state, { payload: { name, value } }) => {
-    //   state[name] = value;
-    // },
   },
 });
 
@@ -133,6 +127,8 @@ export const {
   setUserName,
   openModalAdd,
   closeModalAdd,
+  openModalRemove,
+  closeModalRemove,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

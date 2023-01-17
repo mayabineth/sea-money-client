@@ -63,4 +63,5 @@ export interface type {
   isOpenRemove: boolean;
   isOpenEdit: boolean;
   isOpenAdd: boolean;
+  clickedItemRemove: string;
 }
