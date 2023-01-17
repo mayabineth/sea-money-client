@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { type } from "../utils/interf";
-import { movements, messages, connections } from "../utils/data";
+import { type } from "../utils/interfaces";
+import { movements, messages, assets, connections } from "../utils/data";
 const initialState: type = {
   successRegister: false,
   isLoading: false,
@@ -12,14 +12,8 @@ const initialState: type = {
 
   userName: "name",
 
-  assetId: "",
-  assetSum: "",
-  assetDetail: "",
-  assetStartDate: "",
-  assetEndDate: "",
-
   movements: movements,
-  assets: [],
+  assets: assets,
   connections: connections,
   messages: messages,
 
@@ -27,6 +21,11 @@ const initialState: type = {
   totalOutcome: 0,
   numOfPages: 1,
   page: 1,
+
+  isOpenRemove: false,
+  isOpenEdit: false,
+  isOpenAdd: false,
+  clickedItemRemove: "none",
 };
 
 const cartSlice = createSlice({
@@ -97,6 +96,26 @@ const cartSlice = createSlice({
       state.alertType = "danger";
       state.alertText = "error in create asset";
     },
+    openModalEdit: (state, { payload }) => {
+      state.isOpenEdit = true;
+      // state.clickedItemEdit = payload;
+    },
+    closeModalEdit: (state) => {
+      state.isOpenEdit = false;
+    },
+    openModalRemove: (state, { payload }) => {
+      state.isOpenRemove = true;
+      state.clickedItemRemove = payload;
+    },
+    closeModalRemove: (state) => {
+      state.isOpenRemove = false;
+    },
+    openModalAdd: (state) => {
+      state.isOpenAdd = true;
+    },
+    closeModalAdd: (state) => {
+      state.isOpenAdd = false;
+    },
   },
 });
 
@@ -106,6 +125,10 @@ export const {
   onLogoutRegister,
   onLoginRegister,
   setUserName,
+  openModalAdd,
+  closeModalAdd,
+  openModalRemove,
+  closeModalRemove,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
