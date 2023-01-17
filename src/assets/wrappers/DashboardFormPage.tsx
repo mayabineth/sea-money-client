@@ -57,6 +57,10 @@ const Wrapper = styled.section`
   .connection {
     letter-spacing: var(--letterSpacing);
   }
+  .add-btn {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
   @media (min-width: 992px) {
     .msgs {
       display: flex;

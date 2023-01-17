@@ -6,6 +6,20 @@ export interface moveType {
   category: string;
   type: string;
 }
+export interface moveTypeNoID {
+  date: string;
+  name: string;
+  sum: string;
+  category: string;
+  type: string;
+}
+export interface assetTypeNoID {
+  name: string;
+  sum: string;
+  category: string;
+  currency: string;
+  estimatedAnnualReturn: string;
+}
 export interface assetType {
   id: string;
   name: string;
@@ -45,4 +59,8 @@ export interface type {
   totalOutcome: 0;
   numOfPages: 1;
   page: 1;
+
+  isOpenRemove: boolean;
+  isOpenEdit: boolean;
+  isOpenAdd: boolean;
 }

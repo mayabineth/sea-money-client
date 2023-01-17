@@ -21,6 +21,10 @@ const initialState: type = {
   totalOutcome: 0,
   numOfPages: 1,
   page: 1,
+
+  isOpenRemove: false,
+  isOpenEdit: false,
+  isOpenAdd: false,
 };
 
 const cartSlice = createSlice({
@@ -91,6 +95,33 @@ const cartSlice = createSlice({
       state.alertType = "danger";
       state.alertText = "error in create asset";
     },
+    openModalEdit: (state, { payload }) => {
+      state.isOpenEdit = true;
+      // state.clickedItemEdit = payload;
+    },
+    closeModalEdit: (state) => {
+      state.isOpenEdit = false;
+    },
+    openModalRemove: (state, { payload }) => {
+      state.isOpenRemove = true;
+      // state.clickedItemRemove = payload;
+    },
+    closeModalRemove: (state) => {
+      state.isOpenRemove = false;
+    },
+    openModalAdd: (state) => {
+      state.isOpenAdd = true;
+    },
+    closeModalAdd: (state) => {
+      state.isOpenAdd = false;
+    },
+    // handleChange: (state, { payload }) => {
+    //   const val = payload.name;
+    //   state.val = payload.value;
+    // },
+    // handleChange: (state, { payload: { name, value } }) => {
+    //   state[name] = value;
+    // },
   },
 });
 
@@ -100,6 +131,8 @@ export const {
   onLogoutRegister,
   onLoginRegister,
   setUserName,
+  openModalAdd,
+  closeModalAdd,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
